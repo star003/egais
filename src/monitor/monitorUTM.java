@@ -9,6 +9,7 @@ import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.GroupLayout;
@@ -99,6 +100,18 @@ public class monitorUTM  extends JFrame{
 			}
 			
 		});
+		
+		addWindowListener(new java.awt.event.WindowAdapter() {
+		    @Override
+		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+		        
+		    	timer.cancel();
+				timer.purge();
+				System.out.print("stop");
+		    	
+		    }
+		});
+		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
