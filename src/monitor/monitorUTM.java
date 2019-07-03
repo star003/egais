@@ -9,7 +9,6 @@ import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.GroupLayout;
@@ -69,7 +68,7 @@ public class monitorUTM  extends JFrame{
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				autoRefresh = (!autoRefresh);
+				autoRefresh = (!autoRefresh); 
 				System.out.println(autoRefresh);
 								
 				if(autoRefresh) {
