@@ -63,6 +63,16 @@ public class monitorUtmForm  extends JFrame{
 			
 		});
 		
+		bt_details.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				//refreshTable.refreshUtmTable(table,"out");
+				
+			}
+			
+		});
+		
 		bt_autoRefresh.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {

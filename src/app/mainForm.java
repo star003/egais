@@ -12,13 +12,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowStateListener;
-import java.net.URL;
 import java.sql.SQLException;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.swing.AbstractAction;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -164,6 +162,7 @@ public class mainForm  extends JFrame {
         Dimension sSize = Toolkit.getDefaultToolkit ().getScreenSize ();
         setSize (sSize);
         setExtendedState(MAXIMIZED_BOTH);
+        //setState(JFrame.ICONIFIED); 
         setVisible(true);
         
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -172,8 +171,9 @@ public class mainForm  extends JFrame {
 			  public void run() {
 			    
 					UTMHost.monitorUTM();
-					System.out.print("X");
-				
+					System.out.print(UTMHost.getCountInboxMessage);
+					System.out.print(",");
+					
 			  }
 			}, 5*1000, 30*1000);
 
@@ -291,23 +291,6 @@ public class mainForm  extends JFrame {
         new mainForm();
         
     } //main
-    
-    protected static Image createImage(String path, String description) {
-    	
-        URL imageURL = app.mainForm.class.getResource(path);
- 
-        if (imageURL == null) {
-        	
-            System.err.println("Resource not found: " + path);
-            return null;
-            
-        } else {
-        	
-            return (new ImageIcon(imageURL, description)).getImage();
-            
-        }
-        
-    }
     
 } //mainForm
    

@@ -30,8 +30,9 @@ public class UTMHost {
 	
 	static String UTM_HOST 	= "http://127.0.0.1:8080";
 	static String DB_NAME 	= "egais";
+	public static int getCountInboxMessage;
 	
-    class HostElement {
+    public class HostElement {
     	
     	int recno;
     	String url;
@@ -122,6 +123,7 @@ public class UTMHost {
         }
         
         Collections.sort(result, new SortHosts());
+        getCountInboxMessage = result.size();
         
         return result;
         
@@ -271,4 +273,6 @@ public class UTMHost {
   		
   	}//forTables
   	
+  //*********************************************************************************************************************
+  	  	
 } //UTMHost
