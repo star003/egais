@@ -1,8 +1,7 @@
-package monitor;
+package app;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Vector;
@@ -18,11 +17,11 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
-import monitor.UTMHost.HostElement;
+import monitor.UTMHost;
 
 import java.awt.FlowLayout;
 
-public class monitorUTM  extends JFrame{
+public class monitorUtmForm  extends JFrame{
 	
 	private static final long serialVersionUID = 2L;
 	Timer timer = new Timer();
@@ -32,7 +31,7 @@ public class monitorUTM  extends JFrame{
 	
 	boolean autoRefresh = false;
 	
-	public monitorUTM() {
+	public monitorUtmForm() {
 		
 		setTitle("Монитор очереди");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -146,7 +145,7 @@ public class monitorUTM  extends JFrame{
 		
 	public static void main(String[] args) {
     	
-		monitorUTM app = new monitorUTM();
+		monitorUtmForm app = new monitorUtmForm();
 		app.setVisible(true);
         
     }//main
@@ -176,31 +175,19 @@ class refreshTable {
 	    DefaultTableModel tableModel = new DefaultTableModel();
 	    Object[] columnsHeader = new String[] {"recno", "url", "replyID","fileID"};
 	    tableModel.setColumnIdentifiers(columnsHeader);
-	    	    
-	    ArrayList<HostElement> p = monitorFunctions.getUtmDocument(rj);
-		
-		for (int i = 0; i < p.size(); i++) {
-			
-			String[] myArray = new String[4];
-			myArray[0] =String.valueOf((p.get(i).recno)); 
-			myArray[1] =(String)p.get(i).url;
-			myArray[2] =(String)p.get(i).replyID;
-			myArray[3] ="-";
-			tableModel.addRow(myArray);
-			
-        }
-		
-		return tableModel;
+		return UTMHost.forTables(tableModel, rj);
     
 	} //buildTableModel
 	
 	static void refreshUtmTable (JTable table,String rj) {
 		
 		table.setModel(buildTableModel(rj));
+		
 		TableColumnModel columnModel = table.getColumnModel();
 		columnModel.getColumn(0).setPreferredWidth(100);
 		columnModel.getColumn(1).setPreferredWidth(370);
 		columnModel.getColumn(2).setPreferredWidth(370);
+		
 		
 	} //refreshUtmTable
 	
