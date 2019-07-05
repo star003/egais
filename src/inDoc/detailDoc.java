@@ -1,19 +1,11 @@
 package inDoc;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
+import java.util.stream.Collectors;
 
 //***Расшифровка ответов УТМ
 
@@ -111,5 +103,15 @@ public class detailDoc {
         	
 		
 	} //parseTicket
+	
+	public static String convert(InputStream inputStream, Charset charset) throws IOException {
+		 
+		try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, charset))) {
+			
+			return br.lines().collect(Collectors.joining(System.lineSeparator()));
+			
+		}
+		
+	}//convert
 	
 }
